@@ -1,30 +1,19 @@
 const fs = require("fs");
-const server = require("http");
+const http = require("http");
 const path = require("path");
 
 console.log("welcome to backend");
 
-const nitesh = server.createServer((req, res) => {
-  if (req.url == "/") {
-    res.end("sending from home");
-  } else if (req.url == "/about") {
-    res.end("sending from about");
-  } else if (req.url == "/api") {
-    res.writeHead(200, { 'Content-Type': 'application/json'})
-    fs.readFile(
-      `path.join(__dirname, './userapi/json.json')`,
-      "utf-8",
-      (data) => {
-        console.log(data);
-      }
-    );
-    res.end("sending from  api");
-  }
-  res.writeHead(404, { "content-type": "text/html" }); // header status code
-  res.end("<h1> sending from  backend</h1>");
-});
+const server = http.createServer()
+server.on("request", (req, res) => {
+  fs.readFile("user.txt", "utf-8" , (err, data) => {   // reading data from file
+    if (err) return console.error(err);
+    res.end(" hello world ");
+    console.log(data);
+  })
+})
 
-nitesh.listen(8000, "127.0.0.1", () => {
+server.listen(8000, "127.0.0.1", () => {
   console.log("listening to the server");
 });
 
