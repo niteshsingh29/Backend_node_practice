@@ -1,0 +1,8 @@
+{
+  "name": "nitesh singh",
+  "age": 21,
+  "address": "surat",
+  "country": "India",
+  "role": { "post": "Backend Dev", "tech_stack": "node" },
+  "graduation": "Btech"
+}
